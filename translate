@@ -1,0 +1,34 @@
+1. Estabelecer uma conexão TCP com o nosso servidor
+2. Receber uma mensagem codificada com "T-Scheme"
+3. Validar a mensagem recebida de acordo com o "T-Scheme"
+4. Divida a cifra contido na mensagem
+5. Encode o texto plano revelado com "T-Scheme"
+6. Enviar resposta ao servidor
+7. Receber, validar e descriptografar a mensagem de confirmação do servidor de acordo com "T-Scheme" e a chave utilizada anteriormente para criptografar a primeira mensagem
+
+
+http://191.237.249.140:8000/
+Lá você será solicitado a fornecer seu nome e endereço de e-mail. Depois de ter introduzido os dados solicitados, você será informado sobre os parâmetros de comunicação que você deve usar para se conectar com o servidor (IP host e porta). Você também será capaz de visualizar os pacotes enviados e recebidos entre o servidor e seu programa.
+
+
+T-Scheme é um protocolo ficcional concebido exclusivamente para os fins deste ensaio. Ele define um formato de mensagem para codificação e decodificação de mensagens entre o servidor eo cliente, e também uma seqüência de mensagens que compreende a comunicação entre cliente e servidor.
+
+
+A comunicação entre o servidor eo cliente deve seguir a seguinte sequência:
+1. O servidor envia uma mensagem para o cliente contendo dados como a criptografia de um texto simples codificado em ASCII
+2. O cliente envia de volta para o servidor de uma mensagem que contém dados como o texto simples descriptografado codificado em ASCII
+3. O servidor envia uma mensagem para o cliente, quer como dados contendo:
+
+* -O Criptografia da seqüência codificada em ASCII "OK" usando a mesma chave como a primeira mensagem; ou
+* - A string "Wrong", ASCII-codificado
+
+A criptografia feito pelo servidor deve ser uma cifra monoalfabética, como descrito na próxima mensagem. O cliente deve quebrar a cifra depois de receber a primeira mensagem, a fim de enviar de volta para o servidor o texto simples descriptografado.
+
+Vai usar o mesmo princípio da cifra de cersar, mas em vez de operar sobre as letras, vai operar sobre o valor ASCII
+
+
+
+No alfabeto americano a letra mais comum é a "e", então a letra q mais aparece na mensagem cifrada(vou chamar essa letra de "pi"), então "pi" = "e" xor "key", "key" = "pi" xor "e".
+
+Mas será considerado o espaço em branco " ", então este será o caracter mais comum em vez do "e"
+
